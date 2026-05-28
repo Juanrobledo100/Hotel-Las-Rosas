@@ -13,6 +13,21 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Rutas
+const usuarioRoutes = require('./routes/usuarioRoutes');
+const tipoHabitacionRoutes = require('./routes/tipoHabitacionRoutes');
+const habitacionRoutes = require('./routes/habitacionRoutes');
+const reservaRoutes = require('./routes/reservaRoutes');
+const pagoRoutes = require('./routes/pagoRoutes');
+const resenaRoutes = require('./routes/resenaRoutes');
+
+app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/tipos-habitacion', tipoHabitacionRoutes);
+app.use('/api/habitaciones', habitacionRoutes);
+app.use('/api/reservas', reservaRoutes);
+app.use('/api/pagos', pagoRoutes);
+app.use('/api/resenas', resenaRoutes);
+
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(PORT, () => {
