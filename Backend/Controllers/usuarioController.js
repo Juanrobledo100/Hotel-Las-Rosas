@@ -74,3 +74,13 @@ exports.login = async (req, res) => {
     return res.status(500).json({ message: 'Error en el login' });
   }
 };
+
+exports.perfil = async (req, res) => {
+  try {
+    if (!req.user) return res.status(401).json({ message: 'No autorizado' });
+    return res.json({ usuario: req.user });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error al obtener perfil' });
+  }
+};
