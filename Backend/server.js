@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -12,6 +13,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Rutas
 const usuarioRoutes = require('./routes/usuarioRoutes');
@@ -20,6 +22,7 @@ const habitacionRoutes = require('./routes/habitacionRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
 const pagoRoutes = require('./routes/pagoRoutes');
 const resenaRoutes = require('./routes/resenaRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/tipos-habitacion', tipoHabitacionRoutes);
@@ -27,6 +30,7 @@ app.use('/api/habitaciones', habitacionRoutes);
 app.use('/api/reservas', reservaRoutes);
 app.use('/api/pagos', pagoRoutes);
 app.use('/api/resenas', resenaRoutes);
+app.use('/api/upload', uploadRoutes);
 
 const PORT = process.env.PORT || 5000;
 
