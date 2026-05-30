@@ -25,12 +25,36 @@ exports.listar = async (req, res) => {
 
 exports.obtener = async (req, res) => {
   try {
-    const hab = await Habitacion.findById(req.params.id).populate('tipoHabitacion');
-    if (!hab) return res.status(404).json({ message: 'Habitacion no encontrada' });
-    return res.json(hab);
+
+    let habitacion;
+
+    if (req.params.id) {
+
+      habitacion = await Habitacion
+        .findById(req.params.id)
+        .populate('tipoHabitacion');
+
+    } else if (req.params.numero) {
+
+      habitacion = await Habitacion
+        .findOne({ numero: req.params.numero })
+        .populate('tipoHabitacion');
+
+    }
+
+    if (!habitacion) {
+      return res.status(404).json({
+        message: 'Habitación no encontrada'
+      });
+    }
+
+    return res.status(200).json(habitacion);
+
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ message: 'Error al obtener habitacion' });
+    return res.status(500).json({
+      message: 'Error al obtener habitación'
+    });
   }
 };
 
