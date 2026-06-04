@@ -25,6 +25,10 @@ export default function Sidebar({ activeNav, onNavClick, collapsed, onToggleColl
       navigate("/nosotros");
       return;
     }
+    if (item.label === "Contacto") {
+      navigate("/contacto");
+      return;
+    }
     navigate("/");
   };
 
