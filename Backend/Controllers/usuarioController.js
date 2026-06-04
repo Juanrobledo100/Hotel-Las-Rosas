@@ -7,11 +7,12 @@ const generarToken = (usuario) => {
 };
 
 exports.registrar = async (req, res) => {
-  try {
-    const { nombre, email, contrasena, telefono } = req.body;
 
-    if (!nombre || !email || !contrasena) {
-      return res.status(400).json({ message: 'nombre, email y contrasena son requeridos' });
+  try {
+    const { nombre, apellido, email, contrasena, telefono } = req.body;
+
+    if (!nombre || !apellido || !email || !contrasena) {
+      return res.status(400).json({ message: 'nombre, apellido, email y contrasena son requeridos' });
     }
 
     const existente = await Usuario.findOne({ email });
@@ -22,6 +23,7 @@ exports.registrar = async (req, res) => {
 
     const usuario = await Usuario.create({
       nombre,
+      apellido,
       email,
       contrasenaHash: hash,
       telefono,
@@ -34,6 +36,7 @@ exports.registrar = async (req, res) => {
       usuario: {
         id: usuario._id,
         nombre: usuario.nombre,
+        apellido: usuario.apellido,
         email: usuario.email,
         telefono: usuario.telefono,
         rol: usuario.rol
@@ -63,6 +66,7 @@ exports.login = async (req, res) => {
       usuario: {
         id: usuario._id,
         nombre: usuario.nombre,
+        apellido: usuario.apellido,
         email: usuario.email,
         telefono: usuario.telefono,
         rol: usuario.rol
