@@ -8,6 +8,7 @@ import Login from './pages/Login.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import Register from './pages/Register.jsx'
+import Nosotros from './pages/Nosotros.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/nosotros" element={<Nosotros />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

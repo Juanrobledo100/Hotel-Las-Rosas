@@ -21,6 +21,10 @@ export default function Sidebar({ activeNav, onNavClick, collapsed, onToggleColl
       navigate("/", { state: { scrollTo: "misReservas" } });
       return;
     }
+    if (item.label === "Nosotros") {
+      navigate("/nosotros");
+      return;
+    }
     navigate("/");
   };
 
