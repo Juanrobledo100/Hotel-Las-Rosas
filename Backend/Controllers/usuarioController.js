@@ -10,6 +10,7 @@ exports.registrar = async (req, res) => {
 
   try {
     const { nombre, apellido, email, contrasena, telefono } = req.body;
+    console.log(`POST /api/usuarios/register recibido: nombre=${nombre} apellido=${apellido} email=${email} telefono=${telefono}`);
 
     if (!nombre || !apellido || !email || !contrasena) {
       return res.status(400).json({ message: 'nombre, apellido, email y contrasena son requeridos' });
@@ -30,7 +31,7 @@ exports.registrar = async (req, res) => {
       rol: 'cliente'
     });
 
-    const token = generarToken(usuario);
+    console.log(`Usuario creado: id=${usuario._id} email=${usuario.email}`);
 
     return res.status(201).json({
       usuario: {
@@ -40,8 +41,7 @@ exports.registrar = async (req, res) => {
         email: usuario.email,
         telefono: usuario.telefono,
         rol: usuario.rol
-      },
-      token
+      }
     });
   } catch (err) {
     console.error(err);

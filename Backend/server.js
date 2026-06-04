@@ -22,6 +22,7 @@ const habitacionRoutes = require('./routes/habitacionRoutes');
 const reservaRoutes = require('./routes/reservaRoutes');
 const pagoRoutes = require('./routes/pagoRoutes');
 const resenaRoutes = require('./routes/resenaRoutes');
+const contactoRoutes = require('./routes/contactoRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 
 app.use('/api/usuarios', usuarioRoutes);
@@ -30,6 +31,7 @@ app.use('/api/habitaciones', habitacionRoutes);
 app.use('/api/reservas', reservaRoutes);
 app.use('/api/pagos', pagoRoutes);
 app.use('/api/resenas', resenaRoutes);
+app.use('/api/contactos', contactoRoutes);
 app.use('/api/upload', uploadRoutes);
 
 const PORT = process.env.PORT || 5000;
